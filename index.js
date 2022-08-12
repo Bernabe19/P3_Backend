@@ -17,9 +17,9 @@ app.use(cors());
 
 app.use(bodyParser.urlencoded({extended:false}));
 
-app.use('/public', express.static(`${process.cwd()}/public`));
+app.use('/public', express.static(__dirname + "/public"));
 app.get('/', function(req, res) {
-  res.sendFile(process.cwd() + '/views/index.html');
+  res.sendFile(__dirname + '/views/index.html');
 });
 
 
@@ -40,9 +40,6 @@ app.get('/api/shorturl/:ur', function(req, res) {
     res.redirect(url);
   
 });
-
-
-
 
 app.listen(port, function() {
   console.log(`Listening on port ${port}`);
