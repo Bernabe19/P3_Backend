@@ -17,8 +17,11 @@ app.use(cors());
 
 app.use(bodyParser.urlencoded({extended:false}));
 
-
 app.use('/public', express.static(`${process.cwd()}/public`));
+app.get('/', function(req, res) {
+  res.sendFile(process.cwd() + '/views/index.html');
+});
+
 
 app.post('/api/shorturl', function(req,res){
   var cadena = req.body.url;
@@ -38,9 +41,6 @@ app.get('/api/shorturl/:ur', function(req, res) {
   
 });
 
-app.get('/', function(req, res) {
-  res.sendFile(process.cwd() + '/views/index.html');
-});
 
 
 
